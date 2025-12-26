@@ -60,10 +60,10 @@ export default function About() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Data Sources</h3>
               <div className="space-y-3 mb-4">
                 <div className="border-l-4 border-blue-500 pl-4">
-                  <p className="font-medium text-gray-900">Baby Names Data</p>
+                  <p className="font-medium text-gray-900">Baby Names Data (1996-2024)</p>
                   <p className="text-sm text-gray-700">
                     From the Office for National Statistics (ONS) "Baby names in England and Wales" dataset.
-                    Covers births from 1996 to 2024.
+                    Covers births from 1996 to 2024 with exact counts.
                   </p>
                   <a
                     href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesinenglandandwalesfrom1996"
@@ -72,6 +72,22 @@ export default function About() {
                     className="text-sm text-blue-600 hover:underline"
                   >
                     View ONS Baby Names Data →
+                  </a>
+                </div>
+
+                <div className="border-l-4 border-orange-400 pl-4">
+                  <p className="font-medium text-gray-900">Historical Rankings (1904-1994)</p>
+                  <p className="text-sm text-gray-700">
+                    From the ONS "Top 100 baby names: historical data" dataset.
+                    Rankings at 10-year intervals for the top 100 names. Birth counts are estimated from rankings.
+                  </p>
+                  <a
+                    href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalestop100babynameshistoricaldata"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:underline"
+                  >
+                    View ONS Historical Rankings →
                   </a>
                 </div>
 
@@ -93,10 +109,12 @@ export default function About() {
               </div>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Calculation Process</h3>
+
+              <h4 className="text-lg font-semibold text-gray-900 mb-2 mt-4">Modern Data (1996-2024)</h4>
               <ol className="list-decimal list-inside text-gray-700 space-y-2 ml-4">
                 <li>
                   <span className="font-medium">Count births:</span> For each year from 1996-2024,
-                  we know how many babies were given a particular name.
+                  we know exactly how many babies were given a particular name.
                 </li>
                 <li>
                   <span className="font-medium">Apply mortality rates:</span> Using life tables,
@@ -115,6 +133,42 @@ export default function About() {
                   that approximately 995 of them are still alive in 2025.
                 </p>
               </div>
+
+              <h4 className="text-lg font-semibold text-gray-900 mb-2 mt-6">Historical Data (1904-1994)</h4>
+              <p className="text-gray-700 mb-3">
+                For the top 100 most popular names, we extend the data back to 1904 using ONS historical rankings.
+                However, this data has important limitations:
+              </p>
+              <ol className="list-decimal list-inside text-gray-700 space-y-2 ml-4">
+                <li>
+                  <span className="font-medium">Rankings only:</span> ONS historical data provides rankings
+                  at 10-year intervals (1904, 1914, 1924... 1994), not actual birth counts.
+                </li>
+                <li>
+                  <span className="font-medium">Estimated counts:</span> We estimate birth counts based on the
+                  historical ranking position. Higher-ranked names are assigned higher estimated counts.
+                </li>
+                <li>
+                  <span className="font-medium">Top 100 only:</span> Historical estimates are only available
+                  for names that appeared in the top 100 during those decades.
+                </li>
+                <li>
+                  <span className="font-medium">Interpolation:</span> For years between the 10-year intervals,
+                  we interpolate estimated values.
+                </li>
+              </ol>
+
+              <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mt-4">
+                <p className="text-sm text-orange-900 font-medium mb-2">
+                  ⚠️ Important: Historical Data is Estimated
+                </p>
+                <p className="text-sm text-orange-900">
+                  Pre-1996 data is based on statistical estimates from historical rankings, not actual birth records.
+                  These estimates should be considered approximate indicators of name popularity trends rather than
+                  precise demographic data. Modern data (1996-2024) uses exact ONS birth registration counts and
+                  is significantly more accurate.
+                </p>
+              </div>
             </section>
 
             {/* Limitations */}
@@ -131,8 +185,9 @@ export default function About() {
                 <li className="flex items-start">
                   <span className="text-yellow-600 mr-2">⚠️</span>
                   <span>
-                    <span className="font-medium">Time period:</span> Data starts from 1996.
-                    The US version goes back to 1880, but ONS digital records only begin in 1996.
+                    <span className="font-medium">Historical data limitations:</span> Pre-1996 data (1904-1994)
+                    is estimated from historical rankings, not actual counts. Only available for top 100 names
+                    at 10-year intervals. Modern data (1996-2024) uses exact birth counts and is more accurate.
                   </span>
                 </li>
                 <li className="flex items-start">
