@@ -165,7 +165,10 @@ export default function Home() {
               Discover the age distribution of people with a given name in England & Wales
             </p>
             <p className="text-sm text-gray-600 mt-2">
-              Based on Office for National Statistics (ONS) data, 1996-2024
+              Based on Office for National Statistics (ONS) data, 1904-2024
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Modern data (1996-2024) uses exact counts • Historical data (1904-1995) estimated from rankings
             </p>
           </header>
 

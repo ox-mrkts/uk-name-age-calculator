@@ -45,6 +45,10 @@ export default function NameAgeChart({ data, name, gender }) {
     return null;
   };
 
+  // Check if data includes historical estimates (pre-1996)
+  const hasHistoricalData = data.some(d => d.year < 1996);
+  const earliestYear = data.length > 0 ? Math.min(...data.map(d => d.year)) : 0;
+
   return (
     <div className="w-full">
       <div className="mb-4">
@@ -54,6 +58,15 @@ export default function NameAgeChart({ data, name, gender }) {
         <p className="text-sm text-gray-600 mt-1">
           Black line shows births per year, shaded area shows estimated living population
         </p>
+        {hasHistoricalData && (
+          <div className="mt-2 bg-orange-50 border border-orange-200 rounded-md px-3 py-2">
+            <p className="text-xs text-orange-900">
+              <span className="font-medium">Note:</span> Data from {earliestYear}-1995 is estimated from historical rankings.
+              Modern data (1996-2024) uses exact birth counts.{' '}
+              <a href="/about" className="underline hover:text-orange-700">Learn more</a>
+            </p>
+          </div>
+        )}
       </div>
 
       <ResponsiveContainer width="100%" height={450}>
