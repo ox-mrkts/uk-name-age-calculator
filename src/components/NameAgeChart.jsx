@@ -56,10 +56,10 @@ export default function NameAgeChart({ data, name, gender }) {
         </p>
       </div>
 
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={450}>
         <ComposedChart
           data={data}
-          margin={{ top: 10, right: 30, left: 20, bottom: 50 }}
+          margin={{ top: 10, right: 30, left: 20, bottom: 70 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 

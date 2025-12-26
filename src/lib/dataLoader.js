@@ -99,7 +99,7 @@ export async function loadAllData(gender) {
 }
 
 /**
- * Check if a name exists in the dataset
+ * Check if a name exists in the dataset (case-insensitive)
  *
  * @param {string} name - Name to search for
  * @param {string} gender - 'male' or 'female'
@@ -111,14 +111,21 @@ export function nameExists(name, gender, babyNamesData) {
     return false;
   }
 
-  // Normalize name for comparison
+  // Normalize name for case-insensitive comparison
   const normalizedName = name.trim();
+  const lowerCaseName = normalizedName.toLowerCase();
 
-  return normalizedName in babyNamesData;
+  // Check if exact match exists first
+  if (normalizedName in babyNamesData) {
+    return true;
+  }
+
+  // Otherwise do case-insensitive search
+  return Object.keys(babyNamesData).some(key => key.toLowerCase() === lowerCaseName);
 }
 
 /**
- * Get name data for a specific name
+ * Get name data for a specific name (case-insensitive)
  *
  * @param {string} name - Name to retrieve
  * @param {Object} babyNamesData - Baby names data object
@@ -131,7 +138,16 @@ export function getNameData(name, babyNamesData) {
 
   const normalizedName = name.trim();
 
-  return babyNamesData[normalizedName] || null;
+  // Try exact match first
+  if (babyNamesData[normalizedName]) {
+    return babyNamesData[normalizedName];
+  }
+
+  // Case-insensitive search
+  const lowerCaseName = normalizedName.toLowerCase();
+  const matchingKey = Object.keys(babyNamesData).find(key => key.toLowerCase() === lowerCaseName);
+
+  return matchingKey ? babyNamesData[matchingKey] : null;
 }
 
 /**

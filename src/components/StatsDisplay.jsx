@@ -16,26 +16,22 @@ export default function StatsDisplay({ stats, name }) {
     {
       label: 'Estimated Living',
       value: formatNumber(totalLiving),
-      description: `people named ${name} in England & Wales`,
-      icon: '👥'
+      description: `people named ${name} in England & Wales`
     },
     {
       label: 'Median Age',
       value: `${medianAge} years`,
-      description: 'typical age of someone with this name',
-      icon: '🎂'
+      description: 'typical age of someone with this name'
     },
     {
       label: 'Most Popular Year',
       value: peakBirthYear.year,
-      description: `${formatNumber(peakBirthYear.births)} births that year`,
-      icon: '📈'
+      description: `${formatNumber(peakBirthYear.births)} births that year`
     },
     {
       label: 'Age Range',
       value: `${ageRange.lower}-${ageRange.upper} years`,
-      description: '10th to 90th percentile',
-      icon: '📊'
+      description: '10th to 90th percentile'
     }
   ];
 
@@ -49,9 +45,8 @@ export default function StatsDisplay({ stats, name }) {
             key={card.label}
             className="bg-white border-2 border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow"
           >
-            <div className="flex items-start justify-between mb-2">
+            <div className="mb-2">
               <span className="text-sm font-medium text-gray-600">{card.label}</span>
-              <span className="text-2xl" aria-hidden="true">{card.icon}</span>
             </div>
             <div className="text-2xl font-bold text-gray-900 mb-1">
               {card.value}
